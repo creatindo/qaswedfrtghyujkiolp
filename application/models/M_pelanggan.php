@@ -29,7 +29,7 @@ class M_pelanggan extends CI_Model {
 
         $this->db->where('STATUS', 1);
         if ($count_all) {
-            return $this->db->count_all($this->_table);
+            return $this->db->count_all_results($this->_table);
         }else{
             $result = $this->db->get($this->_table,$pagecount,$start);
             return $result;
