@@ -6,15 +6,44 @@ class M_pelanggan extends CI_Model {
 	public $_table = 'data_pelanggan';
 	public $primary_key = 'ID_DATA_PEL';
 
-	public function get()
-	{
-		$this->db->where('status', 1);
-		return $this->db->get($this->_table);
-	}
+	function get($start, $pagecount = 10, $count_all=false) {
+        $i=0;
+        $dataorder    = array();
+        $dataorder[$i++] = "ID_DATA_PEL";
+        $dataorder[$i++] = "PEL_NAMA";
+        $dataorder[$i++] = "PEL_ALAMAT";
+        $dataorder[$i++] = "PEL_IBU_KANDUNG";
+        $dataorder[$i++] = "PEL_JK";
+        $dataorder[$i++] = "PEL_NO_PASSPORT";
+        $dataorder[$i++] = "STATUS";
+        
+        $order  = $this->input->post('order');
+        $search = $this->input->post("search");
+
+        if (!empty($search["value"])) {
+            $this->db->like('LOWER(PEL_NAMA)', strtolower($search["value"]));
+        }
+        if ($order) {
+            $this->db->order_by( $dataorder[$order[0]["column"]],  $order[0]["dir"]);
+        }
+
+        $this->db->where('STATUS', 1);
+        if ($count_all) {
+            return $this->db->count_all($this->_table);
+        }else{
+            $result = $this->db->get($this->_table,$pagecount,$start);
+            return $result;
+        }
+    }
+
+    function count_all(){
+        return $this->get(null,null,true);
+    }
+    
 	public function get_by($id)
 	{
 		$this->db->where('ID_DATA_PEL', $id);
-		$this->db->where('status', 1);
+		$this->db->where('STATUS', 1);
 		return $this->db->get($this->_table);
 	}
 	public function save()

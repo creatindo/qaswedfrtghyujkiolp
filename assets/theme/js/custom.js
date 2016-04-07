@@ -9,42 +9,40 @@ $(function () {
     $('#sidebar-menu li ul').slideUp();
     $('#sidebar-menu li').removeClass('active');
 
-    $('#sidebar-menu li').click(function () {
-        if ($(this).is('.active')) {
-            $(this).removeClass('active');
-            $('ul', this).slideUp();
-            $(this).removeClass('nv');
-            $(this).addClass('vn');
+    $('#sidebar-menu li').on('click', function() {
+        var link = $('a', this).attr('href');
+
+        if(link) { 
+            window.location.href = link;
         } else {
-            $('#sidebar-menu li ul').slideUp();
-            $(this).removeClass('vn');
-            $(this).addClass('nv');
-            $('ul', this).slideDown();
-            $('#sidebar-menu li').removeClass('active');
-            $(this).addClass('active');
+            if ($(this).is('.active')) {
+                $(this).removeClass('active');
+                $('ul', this).slideUp();
+            } else {
+                $('#sidebar-menu li').removeClass('active');
+                $('#sidebar-menu li ul').slideUp();
+                
+                $(this).addClass('active');
+                $('ul', this).slideDown();
+            }
         }
     });
 
     $('#menu_toggle').click(function () {
         if ($('body').hasClass('nav-md')) {
-            $('body').removeClass('nav-md');
-            $('body').addClass('nav-sm');
-            $('.left_col').removeClass('scroll-view');
-            $('.left_col').removeAttr('style');
+            $('body').removeClass('nav-md').addClass('nav-sm');
+            $('.left_col').removeClass('scroll-view').removeAttr('style');
             $('.sidebar-footer').hide();
 
             if ($('#sidebar-menu li').hasClass('active')) {
-                $('#sidebar-menu li.active').addClass('active-sm');
-                $('#sidebar-menu li.active').removeClass('active');
+                $('#sidebar-menu li.active').addClass('active-sm').removeClass('active');
             }
         } else {
-            $('body').removeClass('nav-sm');
-            $('body').addClass('nav-md');
+            $('body').removeClass('nav-sm').addClass('nav-md');
             $('.sidebar-footer').show();
 
             if ($('#sidebar-menu li').hasClass('active-sm')) {
-                $('#sidebar-menu li.active-sm').addClass('active');
-                $('#sidebar-menu li.active-sm').removeClass('active-sm');
+                $('#sidebar-menu li.active-sm').addClass('active').removeClass('active-sm');
             }
         }
     });
@@ -60,15 +58,21 @@ $(function () {
 });
 
 /** ******  /left menu  *********************** **/
+/** ******  right_col height flexible  *********************** **/
+$(".right_col").css("min-height", $(window).height());
+$(window).resize(function () {
+    $(".right_col").css("min-height", $(window).height());
+});
+/** ******  /right_col height flexible  *********************** **/
 
 
 
 /** ******  tooltip  *********************** **/
 $(function () {
-        $('[data-toggle="tooltip"]').tooltip()
-    })
-    /** ******  /tooltip  *********************** **/
-    /** ******  progressbar  *********************** **/
+    $('[data-toggle="tooltip"]').tooltip()
+})
+/** ******  /tooltip  *********************** **/
+/** ******  progressbar  *********************** **/
 if ($(".progress .progress-bar")[0]) {
     $('.progress .progress-bar').progressbar(); // bootstrap 3
 }
@@ -125,12 +129,13 @@ var __slice = [].slice;
         Starrr.prototype.defaults = {
             rating: void 0,
             numStars: 5,
-            change: function (e, value) {}
+            change: function (e, value) {
+            }
         };
 
         function Starrr($el, options) {
             var i, _, _ref,
-                _this = this;
+                    _this = this;
 
             this.options = $.extend({}, this.defaults, options);
             this.$el = $el;
@@ -266,30 +271,30 @@ $('.bulk_action input#check-all').on('ifUnchecked', function () {
 });
 
 function countChecked() {
-        if (check_state == 'check_all') {
-            $(".bulk_action input[name='table_records']").iCheck('check');
-        }
-        if (check_state == 'uncheck_all') {
-            $(".bulk_action input[name='table_records']").iCheck('uncheck');
-        }
-        var n = $(".bulk_action input[name='table_records']:checked").length;
-        if (n > 0) {
-            $('.column-title').hide();
-            $('.bulk-actions').show();
-            $('.action-cnt').html(n + ' Records Selected');
-        } else {
-            $('.column-title').show();
-            $('.bulk-actions').hide();
-        }
+    if (check_state == 'check_all') {
+        $(".bulk_action input[name='table_records']").iCheck('check');
     }
-    /** ******  /table  *********************** **/
-    /** ******    *********************** **/
-    /** ******    *********************** **/
-    /** ******    *********************** **/
-    /** ******    *********************** **/
-    /** ******    *********************** **/
-    /** ******    *********************** **/
-    /** ******  Accordion  *********************** **/
+    if (check_state == 'uncheck_all') {
+        $(".bulk_action input[name='table_records']").iCheck('uncheck');
+    }
+    var n = $(".bulk_action input[name='table_records']:checked").length;
+    if (n > 0) {
+        $('.column-title').hide();
+        $('.bulk-actions').show();
+        $('.action-cnt').html(n + ' Records Selected');
+    } else {
+        $('.column-title').show();
+        $('.bulk-actions').hide();
+    }
+}
+/** ******  /table  *********************** **/
+/** ******    *********************** **/
+/** ******    *********************** **/
+/** ******    *********************** **/
+/** ******    *********************** **/
+/** ******    *********************** **/
+/** ******    *********************** **/
+/** ******  Accordion  *********************** **/
 
 $(function () {
     $(".expand").on("click", function () {
@@ -305,13 +310,26 @@ $(function () {
 });
 
 /** ******  Accordion  *********************** **/
+
 /** ******  scrollview  *********************** **/
 $(document).ready(function () {
-  
-            $(".scroll-view").niceScroll({
-                touchbehavior: true,
-                cursorcolor: "rgba(42, 63, 84, 0.35)"
-            });
+
+    $(".scroll-view").niceScroll({
+        touchbehavior: true,
+        cursorcolor: "rgba(42, 63, 84, 0.35)"
+    });
 
 });
 /** ******  /scrollview  *********************** **/
+
+/** ******  NProgress  *********************** **/
+if (typeof NProgress != 'undefined') {
+    $(document).ready(function () {
+        NProgress.start();
+    });
+
+    $(window).load(function () {
+        NProgress.done();
+    });
+}
+/** ******  NProgress  *********************** **/
