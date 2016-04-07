@@ -41,7 +41,7 @@ var Datatable = function() {
                 resetGroupActionInputOnSuccess: true,
                 loadingMessage: 'Loading...',
                 dataTable: {
-                    // "dom": "<'row'<'col-md-8 col-sm-12'pli><'col-md-4 col-sm-12'<'table-group-actions pull-right'>>r><'table-responsive't><'row'<'col-md-8 col-sm-12'pli><'col-md-4 col-sm-12'>>", // datatable layout
+                    "dom": "<'row'<'col-md-8 col-sm-12'pli><'col-md-4 col-sm-12'<'table-group-actions pull-right'>>r><'table-responsive't><'row'<'col-md-8 col-sm-12'pli><'col-md-4 col-sm-12'>>", // datatable layout
                     "pageLength": 10, // default records per page
                     "language": { // language settings
                         // metronic spesific
@@ -74,6 +74,15 @@ var Datatable = function() {
                     "autoWidth": false, // disable fixed width and enable fluid table
                     "processing": false, // enable/disable display message box on record load
                     "serverSide": true, // enable/disable server side ajax loading
+
+                    "bStateSave": true, // save datatable state(pagination, sort, etc) in cookie.
+
+                    "sDom": "fltip",//Rfprltpi
+                    "lengthMenu": [
+                        [10, 20, 50, 100, 150, -1],
+                        [10, 20, 50, 100, 150, "All"] // change per page values here
+                    ],
+                    "pageLength": 10, // default record count per page
 
                     "ajax": { // define ajax settings
                         "url": "", // ajax URL
