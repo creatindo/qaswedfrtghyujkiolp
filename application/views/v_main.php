@@ -23,12 +23,6 @@
   <link href="<?php echo base_url() ?>assets/theme/css/icheck/flat/green.css" rel="stylesheet">
   <script src="<?php echo base_url() ?>assets/theme/js/jquery.min.js"></script>
 
-        <!-- datatable -->
-        <link href="<?php echo base_url() ?>assets/theme/js/datatables/jquery.dataTables.min.css" rel="stylesheet" type="text/css" />
-        <link href="<?php echo base_url() ?>assets/theme/js/datatables/buttons.bootstrap.min.css" rel="stylesheet" type="text/css" />
-        <link href="<?php echo base_url() ?>assets/theme/js/datatables/fixedHeader.bootstrap.min.css" rel="stylesheet" type="text/css" />
-        <link href="<?php echo base_url() ?>assets/theme/js/datatables/responsive.bootstrap.min.css" rel="stylesheet" type="text/css" />
-        <link href="<?php echo base_url() ?>assets/theme/js/datatables/scroller.bootstrap.min.css" rel="stylesheet" type="text/css" />
 
         <!-- DATA TABLE -->
         <link href="<?php echo base_url(); ?>assets/theme/js/datatables/datatables.min.css" rel="stylesheet" type="text/css" />
