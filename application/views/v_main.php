@@ -46,7 +46,16 @@
         <script src="<?php echo base_url() ?>assets/theme/js/datatables/responsive.bootstrap.min.js"></script>
         <script src="<?php echo base_url() ?>assets/theme/js/datatables/dataTables.scroller.min.js"></script>
   
+        <!-- form wizard -->
+        <script type="text/javascript" src="<?php echo base_url() ?>assets/theme/js/wizard/jquery.smartWizard.js"></script>
+        <script type="text/javascript" src="<?php echo base_url() ?>assets/theme/js/parsley/parsley.min.js"></script>
 
+        <!-- daterangepicker -->
+        <script type="text/javascript" src="<?php echo base_url() ?>assets/theme/js/moment/moment.min.js"></script>
+        <script type="text/javascript" src="<?php echo base_url() ?>assets/theme/js/datepicker/daterangepicker.js"></script>
+
+        <!-- select2 -->
+        <script src="<?php echo base_url() ?>assets/theme/js/select/select2.full.js"></script>
 
 </head>
 

@@ -105,7 +105,7 @@
               keys: true
             });
             $('#datatable-responsive').DataTable();
-            $('#datatable-scroller').DataTable({
+            $('#asuransi_datatable').DataTable({
               ajax: "<?php echo base_url('pelanggan/get') ?>",
               serverSide: true,
               deferRender: true,

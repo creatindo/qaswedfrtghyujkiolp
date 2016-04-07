@@ -39,7 +39,7 @@ class M_pelanggan extends CI_Model {
     function count_all(){
         return $this->get(null,null,true);
     }
-    
+
 	public function get_by($id)
 	{
 		$this->db->where('ID_DATA_PEL', $id);
@@ -49,14 +49,14 @@ class M_pelanggan extends CI_Model {
 	public function save()
 	{
 		$data = array( 
-			'pel_nama'          => $this->input->post('pel_nama'),
-			'pel_alamat'        => $this->input->post('pel_alamat'),
-			'pel_ibu_kandung'   => $this->input->post('pel_ibu_kandung'),
-			'pel_jk'            => $this->input->post('pel_jk'),
-			'pel_tempat_lahir'  => $this->input->post('pel_tempat_lahir'),
-			'pel_pekerjaan'     => $this->input->post('pel_pekerjaan'),
-			'pel_no_passport'   => $this->input->post('pel_no_passport'),
-			'status'   => 1
+			'PEL_NAMA'          => $this->input->post('pel_nama'),
+			'PEL_ALAMAT'        => $this->input->post('pel_alamat'),
+			'PEL_IBU_KANDUNG'   => $this->input->post('pel_ibu_kandung'),
+			'PEL_JK'            => $this->input->post('pel_jk'),
+			'PEL_TEMPAT_LAHIR'  => $this->input->post('pel_tempat_lahir'),
+			'PEL_PEKERJAAN'     => $this->input->post('pel_pekerjaan'),
+			'PEL_NO_PASSPORT'   => $this->input->post('pel_no_passport'),
+			'STATUS'   => 1
 			);
             // $this->db->set('pel_tanggal_lahir', "TO_DATE('".$this->input->post("pel_tanggal_lahir")."', 'dd/mm/yyyy')", false);
 		
