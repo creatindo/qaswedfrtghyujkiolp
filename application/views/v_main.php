@@ -2,51 +2,32 @@
 <html lang="en">
 
 <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-  <!-- Meta, title, CSS, favicons, etc. -->
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <!-- Meta, title, CSS, favicons, etc. -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <title>Gentallela Alela! | </title>
+    <title>Gentallela Alela! | </title>
 
-  <!-- Bootstrap core CSS -->
+    <!-- Bootstrap core CSS -->
 
-  <link href="<?php echo base_url() ?>assets/theme/css/bootstrap.min.css" rel="stylesheet">
+    <link href="<?php echo base_url() ?>assets/theme/css/bootstrap.min.css" rel="stylesheet">
 
-  <link href="<?php echo base_url() ?>assets/theme/fonts/css/font-awesome.min.css" rel="stylesheet">
-  <link href="<?php echo base_url() ?>assets/theme/css/animate.min.css" rel="stylesheet">
+    <link href="<?php echo base_url() ?>assets/theme/fonts/css/font-awesome.min.css" rel="stylesheet">
+    <link href="<?php echo base_url() ?>assets/theme/css/animate.min.css" rel="stylesheet">
 
-  <!-- Custom styling plus plugins -->
-  <link href="<?php echo base_url() ?>assets/theme/css/custom.css" rel="stylesheet">
-  <link href="<?php echo base_url() ?>assets/theme/css/icheck/flat/green.css" rel="stylesheet">
-  <script src="<?php echo base_url() ?>assets/theme/js/jquery.min.js"></script>
+    <!-- Custom styling plus plugins -->
+    <link href="<?php echo base_url() ?>assets/theme/css/custom.css" rel="stylesheet">
+    <link href="<?php echo base_url() ?>assets/theme/css/icheck/flat/green.css" rel="stylesheet">
+    <script src="<?php echo base_url() ?>assets/theme/js/jquery.min.js"></script>
 
-        <!-- datatable -->
-        <link href="<?php echo base_url() ?>assets/theme/js/datatables/jquery.dataTables.min.css" rel="stylesheet" type="text/css" />
-        <link href="<?php echo base_url() ?>assets/theme/js/datatables/buttons.bootstrap.min.css" rel="stylesheet" type="text/css" />
-        <link href="<?php echo base_url() ?>assets/theme/js/datatables/fixedHeader.bootstrap.min.css" rel="stylesheet" type="text/css" />
-        <link href="<?php echo base_url() ?>assets/theme/js/datatables/responsive.bootstrap.min.css" rel="stylesheet" type="text/css" />
-        <link href="<?php echo base_url() ?>assets/theme/js/datatables/scroller.bootstrap.min.css" rel="stylesheet" type="text/css" />
-
-        <!-- Datatables-->
-        <script src="<?php echo base_url() ?>assets/theme/js/datatables/jquery.dataTables.min.js"></script>
-        <script src="<?php echo base_url() ?>assets/theme/js/datatables/dataTables.bootstrap.js"></script>
-        <script src="<?php echo base_url() ?>assets/theme/js/datatables/dataTables.buttons.min.js"></script>
-        <script src="<?php echo base_url() ?>assets/theme/js/datatables/buttons.bootstrap.min.js"></script>
-        <script src="<?php echo base_url() ?>assets/theme/js/datatables/jszip.min.js"></script>
-        <script src="<?php echo base_url() ?>assets/theme/js/datatables/pdfmake.min.js"></script>
-        <script src="<?php echo base_url() ?>assets/theme/js/datatables/vfs_fonts.js"></script>
-        <script src="<?php echo base_url() ?>assets/theme/js/datatables/buttons.html5.min.js"></script>
-        <script src="<?php echo base_url() ?>assets/theme/js/datatables/buttons.print.min.js"></script>
-        <script src="<?php echo base_url() ?>assets/theme/js/datatables/dataTables.fixedHeader.min.js"></script>
-        
-        <script src="<?php echo base_url() ?>assets/theme/js/datatables/dataTables.keyTable.min.js"></script>
-        <script src="<?php echo base_url() ?>assets/theme/js/datatables/dataTables.responsive.min.js"></script>
-        <script src="<?php echo base_url() ?>assets/theme/js/datatables/responsive.bootstrap.min.js"></script>
-        <script src="<?php echo base_url() ?>assets/theme/js/datatables/dataTables.scroller.min.js"></script>
-  
-
+    <!-- DATA TABLE -->
+    <link href="<?php echo base_url(); ?>assets/theme/js/datatables/datatables.min.css" rel="stylesheet" type="text/css" />
+    <link href="<?php echo base_url(); ?>assets/theme/js/datatables/plugins/bootstrap/datatables.bootstrap.css" rel="stylesheet" type="text/css" />
+    <script src="<?php echo base_url(); ?>assets/theme/scripts/datatable.js" type="text/javascript"></script>
+    <script src="<?php echo base_url(); ?>assets/theme/js/datatables/datatables.min.js" type="text/javascript"></script>
+    <script src="<?php echo base_url(); ?>assets/theme/js/datatables/plugins/bootstrap/datatables.bootstrap.js" type="text/javascript"></script>
 
 </head>
 

@@ -65,57 +65,57 @@
 	}
 </script>
 
-        <script>
-          var handleDataTableButtons = function() {
-              "use strict";
-              0 !== $("#datatable-buttons").length && $("#datatable-buttons").DataTable({
-                dom: "Bfrtip",
-                buttons: [{
-                  extend: "copy",
-                  className: "btn-sm"
-                }, {
-                  extend: "csv",
-                  className: "btn-sm"
-                }, {
-                  extend: "excel",
-                  className: "btn-sm"
-                }, {
-                  extend: "pdf",
-                  className: "btn-sm"
-                }, {
-                  extend: "print",
-                  className: "btn-sm"
-                }],
-                responsive: !0
-              })
+    <script>
+    var datatable = new Datatable();
+    datatable.init({
+        src: $("#asuransi_datatable"),
+        onSuccess: function (grid, response) {
+            // grid:        grid object
+            // response:    json object of server side ajax response
+            // execute some code after table records loaded
+        },
+        onError: function (grid) {
+            // execute some code on network or other general error  
+        },
+        onDataLoad: function(grid) {
+            // execute some code on ajax data load
+        },
+        loadingMessage: 'Loading...',
+        dataTable: { // here you can define a typical datatable settings from http://datatables.net/usage/options 
+
+            // Uncomment below line("dom" parameter) to fix the dropdown overflow issue in the datatable cells. The default datatable layout
+            // setup uses scrollable div(table-scrollable) with overflow:auto to enable vertical scroll(see: assets/global/scripts/datatable.js). 
+            // So when dropdowns used the scrollable div should be removed. 
+            //"dom": "<'row'<'col-md-8 col-sm-12'pli><'col-md-4 col-sm-12'<'table-group-actions pull-right'>>r>t<'row'<'col-md-8 col-sm-12'pli><'col-md-4 col-sm-12'>>",
+            
+            "bStateSave": true, // save datatable state(pagination, sort, etc) in cookie.
+            //  fixedHeader: {
+            //     header: true,
+            //     headerOffset: fixedHeaderOffset
+            // },
+            "sDom": "flitpli",//Rfprltpi
+            "lengthMenu": [
+                [10, 20, 50, 100, 150, -1],
+                [10, 20, 50, 100, 150, "All"] // change per page values here
+            ],
+            
+            "pageLength": 10, // default record count per page
+            "ajax": {
+                "url": "<?php echo site_url('pelanggan/get') ?>", // ajax source
             },
-            TableManageButtons = function() {
-              "use strict";
-              return {
-                init: function() {
-                  handleDataTableButtons()
-                }
-              }
-            }();
-        </script>
-        <script type="text/javascript">
-          $(document).ready(function() {
-            $('#datatable').dataTable();
-            $('#datatable-keytable').DataTable({
-              keys: true
-            });
-            $('#datatable-responsive').DataTable();
-            $('#datatable-scroller').DataTable({
-              ajax: "<?php echo base_url('pelanggan/get') ?>",
-              serverSide: true,
-              deferRender: true,
-              scrollY: 380,
-              scrollCollapse: true,
-              scroller: true
-            });
-            var table = $('#asuransi_datatable').DataTable({
-              fixedHeader: true
-            });
-          });
-          TableManageButtons.init();
-        </script>
+            "columns": [
+                {"orderable": false},
+                {"orderable": true},
+                {"orderable": false},
+                {"orderable": false},
+                {"orderable": false},
+                {"orderable": false},
+                {"orderable": false},
+                {"orderable": false},
+            ],
+            "order": [
+                [1, "asc"]
+            ]// set first column as a default sort by asc
+        }
+    });
+    </script>
