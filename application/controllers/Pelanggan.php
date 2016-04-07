@@ -67,6 +67,8 @@ class Pelanggan extends CI_Controller {
 
 	public function add()
 	{
+		$data['akses_field'] = '';
+		$data['akses_select'] = '';
 		$data['pelanggan'] = $this->m_pelanggan->get();
 		$data_content['content'] = $this->load->view('v_pelanggan_form', $data, TRUE);
 		$data_content['sidebar'] = $this->load->view('v_sidebar', $data, TRUE);
