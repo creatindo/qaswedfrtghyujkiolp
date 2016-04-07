@@ -24,23 +24,23 @@
   <script src="<?php echo base_url() ?>assets/theme/js/jquery.min.js"></script>
 
 
-        <!-- DATA TABLE -->
-        <link href="<?php echo base_url(); ?>assets/theme/js/datatables/datatables.min.css" rel="stylesheet" type="text/css" />
-        <link href="<?php echo base_url(); ?>assets/theme/js/datatables/plugins/bootstrap/datatables.bootstrap.css" rel="stylesheet" type="text/css" />
-        <script src="<?php echo base_url(); ?>assets/theme/scripts/datatable.js" type="text/javascript"></script>
-        <script src="<?php echo base_url(); ?>assets/theme/js/datatables/datatables.min.js" type="text/javascript"></script>
-        <script src="<?php echo base_url(); ?>assets/theme/js/datatables/plugins/bootstrap/datatables.bootstrap.js" type="text/javascript"></script>
-        
-        <!-- form wizard -->
-        <script type="text/javascript" src="<?php echo base_url() ?>assets/theme/js/wizard/jquery.smartWizard.js"></script>
-        <script type="text/javascript" src="<?php echo base_url() ?>assets/theme/js/parsley/parsley.min.js"></script>
+  <!-- DATA TABLE -->
+  <!-- <link href="<?php echo base_url(); ?>assets/theme/js/datatables/datatables.min.css" rel="stylesheet" type="text/css" /> -->
+  <link href="<?php echo base_url(); ?>assets/theme/js/datatables/plugins/bootstrap/datatables.bootstrap.css" rel="stylesheet" type="text/css" />
+  <script src="<?php echo base_url(); ?>assets/theme/scripts/datatable.js" type="text/javascript"></script>
+  <script src="<?php echo base_url(); ?>assets/theme/js/datatables/datatables.min.js" type="text/javascript"></script>
+  <script src="<?php echo base_url(); ?>assets/theme/js/datatables/plugins/bootstrap/datatables.bootstrap.js" type="text/javascript"></script>
+  
+  <!-- form wizard -->
+  <script type="text/javascript" src="<?php echo base_url() ?>assets/theme/js/wizard/jquery.smartWizard.js"></script>
+  <script type="text/javascript" src="<?php echo base_url() ?>assets/theme/js/parsley/parsley.min.js"></script>
 
-        <!-- daterangepicker -->
-        <script type="text/javascript" src="<?php echo base_url() ?>assets/theme/js/moment/moment.min.js"></script>
-        <script type="text/javascript" src="<?php echo base_url() ?>assets/theme/js/datepicker/daterangepicker.js"></script>
+  <!-- daterangepicker -->
+  <script type="text/javascript" src="<?php echo base_url() ?>assets/theme/js/moment/moment.min.js"></script>
+  <script type="text/javascript" src="<?php echo base_url() ?>assets/theme/js/datepicker/daterangepicker.js"></script>
 
-        <!-- select2 -->
-        <script src="<?php echo base_url() ?>assets/theme/js/select/select2.full.js"></script>
+  <!-- select2 -->
+  <script src="<?php echo base_url() ?>assets/theme/js/select/select2.full.js"></script>
 
 </head>
 

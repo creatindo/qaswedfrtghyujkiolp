@@ -1104,7 +1104,7 @@ table.jambo_table tbody tr.selected td {
   background-color: white;
 }
 .dataTables_length {
-  width: 40%;
+  width: 15%;
   float: left;
 }
 .dataTables_filter {

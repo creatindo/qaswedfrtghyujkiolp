@@ -41,7 +41,7 @@ var Datatable = function() {
                 resetGroupActionInputOnSuccess: true,
                 loadingMessage: 'Loading...',
                 dataTable: {
-                    "dom": "<'row'<'col-md-8 col-sm-12'pli><'col-md-4 col-sm-12'<'table-group-actions pull-right'>>r><'table-responsive't><'row'<'col-md-8 col-sm-12'pli><'col-md-4 col-sm-12'>>", // datatable layout
+                    // "dom": "<'row'<'col-md-8 col-sm-12'pli><'col-md-4 col-sm-12'<'table-group-actions pull-right'>>r><'table-responsive't><'row'<'col-md-8 col-sm-12'pli><'col-md-4 col-sm-12'>>", // datatable layout
                     "pageLength": 10, // default records per page
                     "language": { // language settings
                         // metronic spesific
@@ -49,8 +49,8 @@ var Datatable = function() {
                         "metronicAjaxRequestGeneralError": "Could not complete request. Please check your internet connection",
 
                         // data tables spesific
-                        "lengthMenu": "<span class='seperator'>|</span>View _MENU_ records",
-                        "info": "<span class='seperator'>|</span>Found total _TOTAL_ records",
+                        // "lengthMenu": "<span class='seperator'>|</span>View _MENU_ records",
+                        // "info": "<span class='seperator'>|</span>Found total _TOTAL_ records",
                         "infoEmpty": "No records found to show",
                         "emptyTable": "No data available in table",
                         "zeroRecords": "No matching records found",
