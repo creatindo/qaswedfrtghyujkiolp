@@ -1,38 +1,13 @@
-<div class="page-title">
-    <div class="title_left">
-        <h3>
-	        Pelanggan
-	    </h3>
-    </div>
-
-</div>
-<div class="clearfix"></div>
-
-<div class="row">
-    <div class="col-md-12 col-sm-12 col-xs-12">
-        <div class="x_panel">
-            <div class="x_title">
-                <h2>Data</h2>
-                    <ul class="nav navbar-right panel_toolbox">
-                        <li>
-                        <button class="btn btn-success" onclick="pelanggan_add()">Tambah Pelanggan</button>
-                        </li>
-                    </ul>
-                <div class="clearfix"></div>
-            </div>
             <div class="table-container">
-                <table id="asuransi_datatable" class="table table-striped table-bordered">
+                <table id="periode_datatable" class="table table-striped table-bordered">
                     <thead>
                         <tr class="headings">
                             <th>No</th>
                             <th>Nama </th>
-                            <th>Alamat </th>
-                            <th>IBU Kandung</th>
-                            <th>JK </th>
-                            <th>No Passport </th>
+                            <th>Jadwal</th>
+                            <th>Sisa Kuota</th>
                             <th>Status </th>
-                            <th class=" no-link last"><span class="nobr">Action</span>
-                            </th>
+                            <th>Daftar </th>
                         </tr>
                     </thead>
 
@@ -41,37 +16,23 @@
                     </tbody>
                 </table>
             </div>
-        </div>
-    </div>
-</div>
 
 <script type="text/javascript">
-	function pelanggan_add() {
-        $.post('<?php echo site_url() ?>/pelanggan/add', {param1: 'value1'}, function(data, textStatus, xhr) {
-            var id = data.id;
-		      window.location.href = '<?php echo site_url() ?>/pelanggan/edit/'+id;
-        });
-    }
-
-    function edit(id) {
-         window.location.href = '<?php echo site_url() ?>/pelanggan/edit/'+id;
-	}
-
-	function lihat(id) {
-		 window.location.href = '<?php echo site_url() ?>/pelanggan/lihat/'+id;
-	}
-
-	function hapus(id) {
-		$.post('<?php echo site_url() ?>/pelanggan/delete/'+id, {a:a}, function(data, textStatus, xhr) {
+    var id_pelanggan = <?php echo $id_pelanggan ?>;
+	function daftar(id) {
+        var id = $('input[name=radio]:checked').val();
+        // console.log(id);
+		$.post('<?php echo site_url() ?>/periode/daftar_periode', {id_periode:id, id_pelanggan:id_pelanggan}, function(data, textStatus, xhr) {
+            // periode_datatable.getDataTable().ajax.reload();
 			location.reload();
 		});
 	}
-</script>
 
-    <script>
+    // datatable
+    // periode_datatable.setAjaxParam("id_pelanggan",  <?php echo $id_pelanggan ?>);
     var datatable = new Datatable();
     datatable.init({
-        src: $("#asuransi_datatable"),
+        src: $("#periode_datatable"),
         onSuccess: function (grid, response) {
             // grid:        grid object
             // response:    json object of server side ajax response
@@ -97,16 +58,17 @@
             
             
             "ajax": {
-                "url": "<?php echo site_url('pelanggan/get') ?>", // ajax source
+                "url": "<?php echo site_url('periode/get') ?>", // ajax source
+                "data" : function (d){
+                    d.id_pelanggan = id_pelanggan
+                }
             },
             "columns": [
                 {"orderable": false},
                 {"orderable": true},
-                {"orderable": false},
-                {"orderable": false},
-                {"orderable": false},
-                {"orderable": false},
-                {"orderable": false},
+                {"orderable": true},
+                {"orderable": true},
+                {"orderable": true},
                 {"orderable": false},
             ],
             "order": [

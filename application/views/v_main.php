@@ -40,6 +40,7 @@
   <script type="text/javascript" src="<?php echo base_url() ?>assets/theme/js/datepicker/daterangepicker.js"></script>
 
   <!-- select2 -->
+  <link href="<?php echo base_url() ?>assets/theme/css/select/select2.min.css" rel="stylesheet">
   <script src="<?php echo base_url() ?>assets/theme/js/select/select2.full.js"></script>
 
 </head>

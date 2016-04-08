@@ -7,6 +7,7 @@ class Pelanggan extends CI_Controller {
 	{
 		parent::__construct();
 		$this->load->model('m_pelanggan');
+		$this->load->model('m_periode');
 	}
 
 	public function get()
@@ -34,9 +35,18 @@ class Pelanggan extends CI_Controller {
 
 		foreach ($get->result_array() as $d) {
 		    $id = $d['ID_DATA_PEL'];
-		    $lihat = '<button type="button" class="btn btn-primary">lihat</button>';
-		    $edit = '<button type="button" class="btn btn-info">Edit</button>';
-		    $hapus = '<button type="button" class="btn btn-danger">Hapus</button>';
+		    $lihat='<a class="btn btn-primary btn-sm" href="javascript:lihat('.$id.');">
+				<i class="fa fa-search-plus"></i>
+				Lihat
+				</a>';
+			$edit='<a class="btn btn-info btn-sm" href="javascript:edit('.$id.');">
+				<i class="fa fa-edit"></i>
+				Edit
+				</a>';
+			$hapus='<a class="btn btn-danger btn-sm" href="javascript:hapus('.$id.');">
+				<i class="fa fa-trash"></i>
+				Hapus
+				</a>';
 			
 			$records["data"][] = array(
 				$i++,
@@ -65,28 +75,33 @@ class Pelanggan extends CI_Controller {
 		$this->load->view('v_main', $data_content, FALSE);
 	}	
 
+
+
+
 	public function add()
 	{
-		$data['akses_field'] = '';
-		$data['akses_select'] = '';
-		$data_content['content'] = $this->load->view('v_pelanggan_form2', $data, TRUE);
-		$data_content['sidebar'] = $this->load->view('v_sidebar', $data, TRUE);
-		$this->load->view('v_main', $data_content, FALSE);
+		$data['id'] = $this->m_pelanggan->add_temp();
+		$this->output->set_content_type('application/json')->set_output(json_encode($data));
+		// $mode = 'add';
+		// $readonly = '';
+		// $this->edit($id, $readonly, $mode);
 	}
 
-	public function edit($id, $readonly="")
+	public function edit($id, $readonly='')
 	{
+		// $data['mode'] = ($mode != '') ? $mode : 'edit' ;
 		$data['akses_field'] = $readonly;
 		$data['akses_select'] =  ($readonly) ?'disabled':'';
+		$data['periode'] = $this->m_periode->dropdown_active();
 		$data['pelanggan'] = $this->m_pelanggan->get_by($id);
-		$data_content['content'] = $this->load->view('v_pelanggan_form', $data, TRUE);
+		$data_content['content'] = $this->load->view('v_pelanggan_form2', $data, TRUE);
 		$data_content['sidebar'] = $this->load->view('v_sidebar', $data, TRUE);
 		$this->load->view('v_main', $data_content, FALSE);
 	}
 
 	public function lihat($id)
 	{
-		$this->edit($id,'readonly');
+		$this->edit($id,'readonly', '');
 	}
 
 	public function save()

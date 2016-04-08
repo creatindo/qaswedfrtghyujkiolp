@@ -1,3 +1,5 @@
+<?php if (isset($pelanggan)) $r = $pelanggan->row() ?>
+
 <div class="page-title">
     <div class="title_left">
         <h3>
@@ -14,7 +16,7 @@
       <h2>Formulir Pendaftaran<small>Pelanggan</small></h2>
       <ul class="nav navbar-right panel_toolbox">
         <li>
-          <button class="btn btn-success" onclick="pelanggan_add()">Kembali</button>
+          <button class="btn btn-success" onclick="kembali()">Kembali</button>
         </li>
       </ul>
       <div class="clearfix"></div>
@@ -55,7 +57,7 @@
           </li>
         </ul>
         <div id="step-1">
-            <form id="form_pelanggan" data-parsley-validate class="form-horizontal form-label-left">
+            <form id="form_pelanggan"  class="form-horizontal form-label-left">
                 <input type="hidden"  name="id_data_pel" value="<?php echo @$r->ID_DATA_PEL ?>">
                 <div class="form-group">
                     <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Nama <span class="required">*</span>
@@ -91,11 +93,11 @@
                         <?php //$options = []; ?>
                         <?php //form_dropdown('pel_tempat_lahir', $options, 'class="form-control select2_single"'); ?>
                         <select name="pel_tempat_lahir" <?php echo $akses_select ?> class="form-control select2_single">
-                            <option value="">Choose option</option>
-                            <option value="">Option one</option>
-                            <option value="">Option two</option>
-                            <option value="">Option three</option>
-                            <option value="">Option four</option>
+                            <option value="">Pilih Kota</option>
+                            <option value="1">Option one</option>
+                            <option value="2">Option two</option>
+                            <option value="3">Option three</option>
+                            <option value="4">Option four</option>
                         </select>
                     </div>
                 </div>
@@ -121,16 +123,22 @@
                     </div>
                 </div>
                 <div class="ln_solid"></div>
+                <?php if ($akses_field != 'readonly'): ?>
+                  
                 <div class="form-group">
                     <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
-                        <button type="reset" class="btn btn-primary">Reset</button>
-                        <button type="submit" class="btn btn-success">Simpan</button>
+                        <button type="reset" value="reset" class="btn btn-primary">Reset</button>
+                        <button type="button" onclick="save()" class="btn btn-success">Simpan</button>
                     </div>
                 </div>
+                <?php endif ?>
 
             </form>
         </div>
         <div id="step-2">
+            <?php $data['id_pelanggan'] = $r->ID_DATA_PEL ?>
+            <?php $this->load->view('v_tab_periode', $data, FALSE); ?>
+
         </div>
         <div id="step-3">
         </div>
@@ -144,17 +152,17 @@
 
 <script type="text/javascript">
 
-    function pelanggan_back() {
+    function kembali() {
         window.location.href = '<?php echo site_url('pelanggan') ?>';
     }
-
-
+    function pelanggan_edit(id) {
+        window.location.href = '<?php echo site_url() ?>/pelanggan/edit/'+id;
+    }
     
     function save(form_object) {
         var data = $('#form_pelanggan').serialize();
         $.post('<?php echo site_url('pelanggan/save') ?>', data, function(data, textStatus, xhr) {
             if (data.pelanggan.status == true) {
-                window.location.href = '<?php echo site_url('pelanggan') ?>';
             }
         });
 
@@ -178,12 +186,11 @@
         //select2
         $(".select2_single").select2({
             placeholder: "Pilih Kota",
-            allowClear: true
         });
     });
 
 </script>
-  <script type="text/javascript">
+<!--   <script type="text/javascript">
     $(document).ready(function() {
       $.listen('parsley:field:validate', function() {
         validateFront();
@@ -224,4 +231,4 @@
     try {
       hljs.initHighlightingOnLoad();
     } catch (err) {}
-  </script>
+  </script> -->
