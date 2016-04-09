@@ -1,20 +1,17 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class M_periode extends CI_Model {
+class M_sponsor extends CI_Model {
 
-	public $_table = 'periode';
-	public $primary_key = 'ID_PERIODE';
+	public $_table = 'sponsor';
+	public $primary_key = 'ID_SPONSOR';
 
 	function get($start, $pagecount = 10, $count_all=false) {
         $i=0;
         $dataorder    = array();
-        $dataorder[$i++] = "ID_PERIODE";
+        $dataorder[$i++] = "ID_SPONSOR";
         $dataorder[$i++] = "NAMA";
-        $dataorder[$i++] = "TGL_BRNGKT";
-        $dataorder[$i++] = "TGL_PULANG";
-        $dataorder[$i++] = "KUOTA";
-        $dataorder[$i++] = "PENUH";
+        $dataorder[$i++] = "ALAMAT";
         $dataorder[$i++] = "STATUS";
         
         $order  = $this->input->post('order');
@@ -42,7 +39,7 @@ class M_periode extends CI_Model {
 
 	public function get_by($id)
 	{
-		$this->db->where('ID_PERIODE', $id);
+		$this->db->where('ID_SPONSOR', $id);
 		$this->db->where('STATUS', 1);
 		return $this->db->get($this->_table);
 	}
@@ -50,14 +47,12 @@ class M_periode extends CI_Model {
 	public function save()
 	{
 		$data = array( 
-			'NAMA'       => $this->input->post('nama'),
-			'KUOTA'      => $this->input->post('kuota'),
-			'TGL_BRNGKT' => date('Y-m-d',strtotime($this->input->post('tgl_brngkt'))),
-			'TGL_PULANG' => date('Y-m-d',strtotime($this->input->post('tgl_pulang'))),
-			'STATUS'     => 1
+			'NAMA'   => $this->input->post('nama'),
+			'ALAMAT' => $this->input->post('alamat'),
+			'STATUS' => 1
 			);
 		
-		$id = $this->input->post('id_periode');
+		$id = $this->input->post('id_sponsor');
 		if (empty($id)) {
 			$this->db->insert($this->_table, $data);
 			$id = $this->db->insert_id();
@@ -65,7 +60,7 @@ class M_periode extends CI_Model {
 			$result = array('id' => $id, 'status' => 'inserted');
 
 		} else {
-			$this->db->where('ID_periode', $id);
+			$this->db->where('ID_SPONSOR', $id);
 			$this->db->update($this->_table, $data);
 
 			$result = array('id' => $id, 'status' => 'updated');
@@ -77,7 +72,7 @@ class M_periode extends CI_Model {
 	public function delete($id)
 	{
 		$this->db->set('STATUS', 0);
-		$this->db->where('ID_PERIODE', $id);
+		$this->db->where('ID_SPONSOR', $id);
 		$this->db->update($this->_table);
 		
 		return array('id' => $id, 'deleted' => true );

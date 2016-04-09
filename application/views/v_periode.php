@@ -1,13 +1,13 @@
 <div class="page-title">
     <div class="title_left">
         <h3>
-	        Pelanggan
+	        Periode <small>master</small>
 	    </h3>
     </div>
 
 </div>
 <div class="clearfix"></div>
-
+<div id="modal_periode"></div>
 <div class="row">
     <div class="col-md-12 col-sm-12 col-xs-12">
         <div class="x_panel">
@@ -15,23 +15,22 @@
                 <h2>Data</h2>
                     <ul class="nav navbar-right panel_toolbox">
                         <li>
-                        <button class="btn btn-success" onclick="pelanggan_add()">Tambah Pelanggan</button>
+                        <button class="btn btn-success" onclick="periode_add()">Tambah Periode</button>
                         </li>
                     </ul>
                 <div class="clearfix"></div>
             </div>
             <div class="table-container">
-                <table id="asuransi_datatable" class="table table-striped table-bordered">
+                <table id="periode_datatable" class="table table-striped table-bordered">
                     <thead>
                         <tr class="headings">
                             <th>No</th>
-                            <th>Nama </th>
-                            <th>Alamat </th>
-                            <th>IBU Kandung</th>
-                            <th>JK </th>
-                            <th>No Passport </th>
-                            <th>Status </th>
-                            <th class=" no-link last"><span class="nobr">Action</span>
+                            <th>Periode</th>
+                            <th>BRANGKAT</th>
+                            <th>PULANG</th>
+                            <th>KUOTA</th>
+                            <th>SISA</th>
+                            <th>Action</span>
                             </th>
                         </tr>
                     </thead>
@@ -46,32 +45,27 @@
 </div>
 
 <script type="text/javascript">
-	function pelanggan_add() {
-        $.post('<?php echo site_url() ?>/pelanggan/add', {param1: 'value1'}, function(data, textStatus, xhr) {
-            var id = data.id;
-		      window.location.href = '<?php echo site_url() ?>/pelanggan/edit/'+id;
-        });
+	function periode_add() {
+        $('#modal_periode').load('<?php echo site_url('periode/add') ?>');
     }
 
     function edit(id) {
-         window.location.href = '<?php echo site_url() ?>/pelanggan/edit/'+id;
+        $('#modal_periode').load('<?php echo site_url() ?>/periode/edit/'+id);
 	}
 
 	function lihat(id) {
-		 window.location.href = '<?php echo site_url() ?>/pelanggan/lihat/'+id;
+        $('#modal_periode').load('<?php echo site_url() ?>/periode/lihat/'+id);
 	}
 
 	function hapus(id) {
-		$.post('<?php echo site_url() ?>/pelanggan/delete/'+id, {a:a}, function(data, textStatus, xhr) {
+		$.post('<?php echo site_url() ?>/periode/delete/'+id, {a:a}, function(data, textStatus, xhr) {
             datatable.getDataTable().ajax.reload();
         });
     }
-</script>
 
-    <script>
     var datatable = new Datatable();
     datatable.init({
-        src: $("#asuransi_datatable"),
+        src: $("#periode_datatable"),
         onSuccess: function (grid, response) {
             // grid:        grid object
             // response:    json object of server side ajax response
@@ -97,16 +91,15 @@
             
             
             "ajax": {
-                "url": "<?php echo site_url('pelanggan/get') ?>", // ajax source
+                "url": "<?php echo site_url('periode/get') ?>", // ajax source
             },
             "columns": [
                 {"orderable": false},
                 {"orderable": true},
-                {"orderable": false},
-                {"orderable": false},
-                {"orderable": false},
-                {"orderable": false},
-                {"orderable": false},
+                {"orderable": true},
+                {"orderable": true},
+                {"orderable": true},
+                {"orderable": true},
                 {"orderable": false},
             ],
             "order": [
@@ -114,5 +107,4 @@
             ]// set first column as a default sort by asc
         }
     });
-    </script>
-
+</script>

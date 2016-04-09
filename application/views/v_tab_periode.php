@@ -22,15 +22,15 @@
 	function daftar(id) {
         var id = $('input[name=radio]:checked').val();
         // console.log(id);
-		$.post('<?php echo site_url() ?>/periode/daftar_periode', {id_periode:id, id_pelanggan:id_pelanggan}, function(data, textStatus, xhr) {
-            // periode_datatable.getDataTable().ajax.reload();
-			location.reload();
+		$.post('<?php echo site_url() ?>/t_periode/daftar_periode', {id_periode:id, id_pelanggan:id_pelanggan}, function(data, textStatus, xhr) {
+            datatable.getDataTable().ajax.reload();
+			// location.reload();
 		});
 	}
 
     // datatable
-    // periode_datatable.setAjaxParam("id_pelanggan",  <?php echo $id_pelanggan ?>);
     var datatable = new Datatable();
+    datatable.setAjaxParam("id_pelanggan",  <?php echo $id_pelanggan ?>);
     datatable.init({
         src: $("#periode_datatable"),
         onSuccess: function (grid, response) {
@@ -58,10 +58,10 @@
             
             
             "ajax": {
-                "url": "<?php echo site_url('periode/get') ?>", // ajax source
-                "data" : function (d){
-                    d.id_pelanggan = id_pelanggan
-                }
+                "url": "<?php echo site_url('t_periode/get') ?>" // ajax source
+                // "data" : function (d){
+                //     d.id_pelanggan = id_pelanggan
+                // }
             },
             "columns": [
                 {"orderable": false},

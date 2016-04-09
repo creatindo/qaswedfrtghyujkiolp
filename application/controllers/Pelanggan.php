@@ -7,7 +7,7 @@ class Pelanggan extends CI_Controller {
 	{
 		parent::__construct();
 		$this->load->model('m_pelanggan');
-		$this->load->model('m_periode');
+		$this->load->model('m_t_periode');
 	}
 
 	public function get()
@@ -92,7 +92,7 @@ class Pelanggan extends CI_Controller {
 		// $data['mode'] = ($mode != '') ? $mode : 'edit' ;
 		$data['akses_field'] = $readonly;
 		$data['akses_select'] =  ($readonly) ?'disabled':'';
-		$data['periode'] = $this->m_periode->dropdown_active();
+		$data['periode'] = $this->m_t_periode->dropdown_active();
 		$data['pelanggan'] = $this->m_pelanggan->get_by($id);
 		$data_content['content'] = $this->load->view('v_pelanggan_form2', $data, TRUE);
 		$data_content['sidebar'] = $this->load->view('v_sidebar', $data, TRUE);

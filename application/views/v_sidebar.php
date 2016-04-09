@@ -11,9 +11,11 @@
             </li>
             <li><a><i class="fa fa-table"></i> Master <span class="fa fa-chevron-down"></span></a>
                 <ul class="nav child_menu" style="display: none">
-                    <li><a href="chartjs2.html">Dokumen</a>
+                    <li><a href="<?php echo site_url('dokumen') ?>">Dokumen</a>
                     </li>
-                    <li><a href="chartjs.html">Sponsor</a>
+                    <li><a href="<?php echo site_url('sponsor') ?>">Sponsor</a>
+                    </li>
+                    <li><a href="<?php echo site_url('periode') ?>">Periode</a>
                     </li>
                 </ul>
             </li>

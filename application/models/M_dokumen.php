@@ -1,27 +1,24 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class M_periode extends CI_Model {
+class M_dokumen extends CI_Model {
 
-	public $_table = 'periode';
-	public $primary_key = 'ID_PERIODE';
+	public $_table = 'data_dokumen';
+	public $primary_key = 'ID_DATA_DOKUMEN';
 
 	function get($start, $pagecount = 10, $count_all=false) {
         $i=0;
         $dataorder    = array();
-        $dataorder[$i++] = "ID_PERIODE";
-        $dataorder[$i++] = "NAMA";
-        $dataorder[$i++] = "TGL_BRNGKT";
-        $dataorder[$i++] = "TGL_PULANG";
-        $dataorder[$i++] = "KUOTA";
-        $dataorder[$i++] = "PENUH";
+        $dataorder[$i++] = "ID_DATA_DOKUMEN";
+        $dataorder[$i++] = "DATA_DOKUMEN";
+        $dataorder[$i++] = "KETERANGAN";
         $dataorder[$i++] = "STATUS";
         
         $order  = $this->input->post('order');
         $search = $this->input->post("search");
 
         if (!empty($search["value"])) {
-            $this->db->like('LOWER(NAMA)', strtolower($search["value"]));
+            $this->db->like('LOWER(DATA_DOKUMEN)', strtolower($search["value"]));
         }
         if ($order) {
             $this->db->order_by( $dataorder[$order[0]["column"]],  $order[0]["dir"]);
@@ -42,7 +39,7 @@ class M_periode extends CI_Model {
 
 	public function get_by($id)
 	{
-		$this->db->where('ID_PERIODE', $id);
+		$this->db->where('ID_DATA_DOKUMEN', $id);
 		$this->db->where('STATUS', 1);
 		return $this->db->get($this->_table);
 	}
@@ -50,14 +47,12 @@ class M_periode extends CI_Model {
 	public function save()
 	{
 		$data = array( 
-			'NAMA'       => $this->input->post('nama'),
-			'KUOTA'      => $this->input->post('kuota'),
-			'TGL_BRNGKT' => date('Y-m-d',strtotime($this->input->post('tgl_brngkt'))),
-			'TGL_PULANG' => date('Y-m-d',strtotime($this->input->post('tgl_pulang'))),
-			'STATUS'     => 1
+			'data_dokumen' => $this->input->post('data_dokumen'),
+			'keterangan'   => $this->input->post('keterangan'),
+			'STATUS'       => 1
 			);
 		
-		$id = $this->input->post('id_periode');
+		$id = $this->input->post('id_data_dokumen');
 		if (empty($id)) {
 			$this->db->insert($this->_table, $data);
 			$id = $this->db->insert_id();
@@ -65,7 +60,7 @@ class M_periode extends CI_Model {
 			$result = array('id' => $id, 'status' => 'inserted');
 
 		} else {
-			$this->db->where('ID_periode', $id);
+			$this->db->where('ID_DATA_DOKUMEN', $id);
 			$this->db->update($this->_table, $data);
 
 			$result = array('id' => $id, 'status' => 'updated');
@@ -77,7 +72,7 @@ class M_periode extends CI_Model {
 	public function delete($id)
 	{
 		$this->db->set('STATUS', 0);
-		$this->db->where('ID_PERIODE', $id);
+		$this->db->where('ID_DATA_DOKUMEN', $id);
 		$this->db->update($this->_table);
 		
 		return array('id' => $id, 'deleted' => true );
