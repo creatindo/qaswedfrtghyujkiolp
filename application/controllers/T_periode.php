@@ -43,7 +43,6 @@ class T_periode extends CI_Controller {
 
 		$i=$iDisplayStart+1;
 
-		$status = array('1' => 'ADA', '0'=> 'PENUH' );
 		foreach ($get->result_array() as $d) {
 		    $id = $d['ID_PERIODE'];
 			$ceked = ($ck == $id) ? 'checked' : '' ;                            
@@ -53,19 +52,14 @@ class T_periode extends CI_Controller {
             } else {
 			    $daftar='<input type="radio" class="flat" '.$ceked.' name="radio" value="'.$id.'" onclick="daftar('.$id.')"> Daftar';
             }
-                              
+            $status = ($d['KUOTA'] == $d['KUOTA_TERPAKAI']) ? 'PENUH':'ADA' ; 
 
-		  //   $daftar='<a class="btn btn-info" href="javascript:daftar('.$id.');">
-				// <i class="fa fa-edit"></i>
-				// Daftar
-				// </a>';
-			
 			$records["data"][] = array(
 				$i++,
 				$d['NAMA'],
 				$d['TGL_BRNGKT'].' - '.$d['TGL_PULANG'],
 				$d['KUOTA']-$d['KUOTA_TERPAKAI'],
-				$status[$d['STATUS']],
+				$status,
 				$daftar
 			);
 		}
@@ -79,7 +73,7 @@ class T_periode extends CI_Controller {
 
 	public function daftar_periode()
 	{
-		$res['stat'] = $this->m_t_periode->daftar_periode();
+		$res['result'] = $this->m_t_periode->daftar_periode();
 		$this->output->set_content_type('application/json')->set_output(json_encode($res));
 	}	
 

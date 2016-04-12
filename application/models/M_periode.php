@@ -14,7 +14,7 @@ class M_periode extends CI_Model {
         $dataorder[$i++] = "TGL_BRNGKT";
         $dataorder[$i++] = "TGL_PULANG";
         $dataorder[$i++] = "KUOTA";
-        $dataorder[$i++] = "PENUH";
+        // $dataorder[$i++] = "PENUH";
         $dataorder[$i++] = "STATUS";
         
         $order  = $this->input->post('order');

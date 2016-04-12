@@ -21,7 +21,7 @@ function SmartWizard(target, options) {
     this.elmStepContainer = $('<div></div>').addClass("stepContainer");
     this.loader = $('<div>Loading</div>').addClass("loader");
     this.buttons = {
-        next : $('<a>'+options.labelNext+'</a>').attr("href","#").addClass("btn btn-success"),
+        next : $('<a>'+options.labelNext+'</a>').attr("href","").addClass("btn btn-success simpan"),
         previous : $('<a>'+options.labelPrevious+'</a>').attr("href","#").addClass("btn btn-primary"),
         finish  : $('<a>'+options.labelFinish+'</a>').attr("href","#").addClass("btn btn-default")
     };
@@ -467,16 +467,16 @@ function SmartWizard(target, options) {
     $.fn.smartWizard.defaults = {
         selected: 0,  // Selected Step, 0 = first step
         keyNavigation: true, // Enable/Disable key navigation(left and right keys are used if enabled)
-        enableAllSteps: false,
+        enableAllSteps: true,
         transitionEffect: 'fade', // Effect on navigation, none/fade/slide/slideleft
         contentURL:null, // content url, Enables Ajax content loading
         contentCache:true, // cache step contents, if false content is fetched always from ajax url
         cycleSteps: false, // cycle step navigation
         enableFinishButton: false, // make finish button enabled always
-        hideButtonsOnDisabled: false, // when the previous/next/finish buttons are disabled, hide them instead?
+        hideButtonsOnDisabled: true, // when the previous/next/finish buttons are disabled, hide them instead?
         errorSteps:[],    // Array Steps with errors
         labelNext:'Next',
-        labelPrevious:'Previous',
+        labelPrevious:'Back',
         labelFinish:'Finish',
         noForwardJumping: false,
         ajaxType: "POST",

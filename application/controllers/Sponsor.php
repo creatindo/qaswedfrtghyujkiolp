@@ -73,7 +73,7 @@ class Sponsor extends CI_Controller {
 
 	public function add()
 	{
-		$data['title'] = 'Tambah sponsor';
+		$data['title'] = 'Tambah Sponsor';
 		$data['akses_field'] = '';
 		$this->load->view('v_sponsor_modal', $data);
 	}

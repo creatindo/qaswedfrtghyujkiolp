@@ -35,7 +35,7 @@ class M_t_periode extends CI_Model {
         if (!empty($search["value"])) {
             $this->db->like('LOWER(NAMA)', strtolower($search["value"]));
         }
-        // $this->db->where('STATUS', 1);
+        $this->db->where('STATUS', 1);
         if ($count_all) {
             return $this->db->count_all_results('v_periode');
         }else{
@@ -60,24 +60,13 @@ class M_t_periode extends CI_Model {
     	$this->db->where('ID_DATA_PEL', $id_pelanggan);
     	$this->db->update('pelanggan');
 
-    	// update kuota baru
-    	$this->db->where('ID_PERIODE', $id_periode);
-    	$p = $this->db->get('v_periode')->row();
-
-    	$kuota_baru = $p->KUOTA_TERPAKAI;
-    	if ($kuota_baru == $p->KUOTA) {
-	    	$this->db->set('STATUS', 0);
-        	$this->db->where('ID_PERIODE', $id_periode);
-        	$this->db->update('periode');    		
+        if ($this->db->affected_rows() < 1) {
+            $this->db->set('ID_PERIODE', $id_periode);
+            $this->db->set('ID_DATA_PEL', $id_pelanggan);
+            $this->db->insert('pelanggan');
         }
-    	
-
-    	return true;
-
-
+        return array('id_periode' => $id_periode, 'id_pelanggan' => $id_pelanggan, 'status'=> true);;
     }
-
-
 }
 
 /* End of file M_anggota.php */

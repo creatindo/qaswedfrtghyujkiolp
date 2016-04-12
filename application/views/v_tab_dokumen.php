@@ -1,37 +1,11 @@
-<div class="page-title">
-    <div class="title_left">
-        <h3>
-	        Periode <small>master</small>
-	    </h3>
-    </div>
-
-</div>
-<div class="clearfix"></div>
-<div id="modal_periode"></div>
-<div class="row">
-    <div class="col-md-12 col-sm-12 col-xs-12">
-        <div class="x_panel">
-            <div class="x_title">
-                <h2>Data</h2>
-                    <ul class="nav navbar-right panel_toolbox">
-                        <li>
-                        <button class="btn btn-success" onclick="periode_add()">Tambah Periode</button>
-                        </li>
-                    </ul>
-                <div class="clearfix"></div>
-            </div>
             <div class="table-container">
-                <table id="periode_datatable" class="table table-striped table-bordered">
+                <table id="dokumen_datatable" class="table table-striped table-bordered">
                     <thead>
                         <tr class="headings">
                             <th>No</th>
-                            <th>Periode</th>
-                            <th>BRANGKAT</th>
-                            <th>PULANG</th>
-                            <th>KUOTA</th>
-                            <!-- <th>SISA</th> -->
-                            <th>Action</span>
-                            </th>
+                            <th>Nama </th>
+                            <th>Keterangan</th>
+                            <th>Status</th>
                         </tr>
                     </thead>
 
@@ -40,32 +14,27 @@
                     </tbody>
                 </table>
             </div>
-        </div>
-    </div>
-</div>
 
 <script type="text/javascript">
-	function periode_add() {
-        $('#modal_periode').load('<?php echo site_url('periode/add') ?>');
-    }
-
-    function edit(id) {
-        $('#modal_periode').load('<?php echo site_url() ?>/periode/edit/'+id);
+    var id_pelanggan = <?php echo $id_pelanggan ?>;
+	function status_dokumen(id) {
+        if ($('#ck_'+id).is(":checked")) {
+            console.log('masuk');
+            $.post('<?php echo site_url() ?>/t_dokumen/daftar_dokumen', {id_dokumen:id, id_pelanggan:id_pelanggan, status:1}, function(data, textStatus, xhr) {
+                datatable.getDataTable().ajax.reload();
+            });
+        }else{
+            $.post('<?php echo site_url() ?>/t_dokumen/daftar_dokumen', {id_dokumen:id, id_pelanggan:id_pelanggan, status:0}, function(data, textStatus, xhr) {
+                datatable.getDataTable().ajax.reload();
+            });
+        }   
 	}
 
-	function lihat(id) {
-        $('#modal_periode').load('<?php echo site_url() ?>/periode/lihat/'+id);
-	}
-
-	function hapus(id) {
-		$.post('<?php echo site_url() ?>/periode/delete/'+id, {a:a}, function(data, textStatus, xhr) {
-            datatable.getDataTable().ajax.reload();
-        });
-    }
-
+    // datatable
     var datatable = new Datatable();
+    datatable.setAjaxParam("id_pelanggan",  <?php echo $id_pelanggan ?>);
     datatable.init({
-        src: $("#periode_datatable"),
+        src: $("#dokumen_datatable"),
         onSuccess: function (grid, response) {
             // grid:        grid object
             // response:    json object of server side ajax response
@@ -91,15 +60,15 @@
             
             
             "ajax": {
-                "url": "<?php echo site_url('periode/get') ?>", // ajax source
+                "url": "<?php echo site_url('t_dokumen/get') ?>" // ajax source
+                // "data" : function (d){
+                //     d.id_pelanggan = id_pelanggan
+                // }
             },
             "columns": [
                 {"orderable": false},
                 {"orderable": true},
                 {"orderable": true},
-                {"orderable": true},
-                {"orderable": true},
-                // {"orderable": true},
                 {"orderable": false},
             ],
             "order": [
@@ -107,4 +76,5 @@
             ]// set first column as a default sort by asc
         }
     });
-</script>
+    </script>
+
