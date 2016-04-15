@@ -78,6 +78,21 @@ class T_pembayaran extends CI_Controller {
 		$this->output->set_content_type('application/json')->set_output(json_encode($records));
 	}
 
+	public function add_pembayaran($id='')
+	{
+		$data['id_data_pel']     = $id;
+		$data['id_pembayaran']   = $this->m_t_pembayaran->get_pembayaran_id($id);
+		$data_content['content'] = $this->load->view('v_t_pembayaran', $data, TRUE);
+		$data_content['sidebar'] = $this->load->view('v_sidebar', $data, TRUE);
+		$this->load->view('v_main', $data_content, FALSE);
+
+	}
+	
+	public function simpan_pembayaran()
+	{
+		$res['pembayaran'] = $this->m_t_pembayaran->simpan_pembayaran();
+		$this->output->set_content_type('application/json')->set_output(json_encode($res));
+	}
 }
 
 /* End of file T_pembayaran.php */

@@ -41,8 +41,8 @@
 </div>
 
 <script type="text/javascript">
-    function edit(id) {
-         window.location.href = '<?php echo site_url() ?>/t_pembayaran/bayar/'+id;
+    function bayar(id) {
+         window.location.href = '<?php echo site_url() ?>/t_pembayaran/add_pembayaran/'+id;
 	}
 
     var datatable = new Datatable();
