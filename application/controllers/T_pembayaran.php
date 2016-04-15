@@ -60,7 +60,7 @@ class T_pembayaran extends CI_Controller {
 		    $progres = '<div class="progress progress_sm">
                             <div class="progress-bar bg-green" role="progressbar" data-transitiongoal="47"></div>
                           </div>
-                          <small>'.$d['JUMLAH_CICILAN'].' : Rp. '.number_format($d['JUMLAH_BAYAR']).'</small>
+                          <small>'.$d['JUMLAH_CICILAN'].'/'.$d['TOTAL_CICILAN'].' :  Rp. '.number_format($d['JUMLAH_BAYAR']).' / Rp. '.number_format($d['TOTAL_BAYAR']).'</small>
 					    ';
 			
 			$records["data"][] = array(
