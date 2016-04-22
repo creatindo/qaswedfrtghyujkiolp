@@ -15,7 +15,7 @@
                 <h2>Data</h2>
                     <ul class="nav navbar-right panel_toolbox">
                         <li>
-                        <button class="btn btn-success" onclick="dokumen_add()">Tambah dokumen</button>
+                        <button class="btn btn-success" onclick="dokumen_add()">Tambah Dokumen</button>
                         </li>
                     </ul>
                 <div class="clearfix"></div>

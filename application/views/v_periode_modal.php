@@ -1,5 +1,5 @@
 <?php if (isset($periode)) $r = $periode->row() ?>
-<div id="periode_modal" class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-hidden="true">
+<div id="periode_modal" class="modal fade bs-example-modal-sm" role="dialog" aria-hidden="true">
   <div class="modal-dialog modal-sm">
     <div class="modal-content">
 

@@ -23,7 +23,10 @@
         var id = $('input[name=radio]:checked').val();
         // console.log(id);
 		$.post('<?php echo site_url() ?>/t_periode/daftar_periode', {id_periode:id, id_pelanggan:id_pelanggan}, function(data, textStatus, xhr) {
+            if (data.result.status == true) {
+                console.log('ok');
             datatable.getDataTable().ajax.reload();
+            }
 			// location.reload();
 		});
 	}

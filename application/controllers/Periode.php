@@ -61,7 +61,7 @@ class Periode extends CI_Controller {
 				$d['TGL_BRNGKT'],
 				$d['TGL_PULANG'],
 				$d['KUOTA'],
-				$penuh[$d['PENUH']],
+				// $penuh[$d['PENUH']],
 				$lihat.$edit.$hapus
 			);
 		}
@@ -76,12 +76,12 @@ class Periode extends CI_Controller {
 
 	public function add()
 	{
-		$data['title'] = 'Tambah periode';
+		$data['title'] = 'Tambah Periode';
 		$data['akses_field'] = '';
 		$this->load->view('v_periode_modal', $data);
 	}
 
-	public function edit($id, $readonly='', $title='Edit periode')
+	public function edit($id, $readonly='', $title='Edit Periode')
 	{
 		$data['title']       = $title;
 		$data['akses_field'] = $readonly;
@@ -91,7 +91,7 @@ class Periode extends CI_Controller {
 
 	public function lihat($id)
 	{
-		$this->edit($id,'readonly', 'Detail periode');
+		$this->edit($id,'readonly', 'Detail Periode');
 	}
 
 	public function save()

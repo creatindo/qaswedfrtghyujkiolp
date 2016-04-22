@@ -7,7 +7,7 @@
             </li>
             <li><a href="<?php echo site_url('pelanggan') ?>"><i class="fa fa-edit"></i> Pelanggan </span></a>
             </li>
-            <li><a><i class="fa fa-desktop"></i> Pembayaran </span></a>
+            <li><a href="<?php echo site_url('t_pembayaran') ?>"><i class="fa fa-desktop"></i> Pembayaran </span></a>
             </li>
             <li><a><i class="fa fa-table"></i> Master <span class="fa fa-chevron-down"></span></a>
                 <ul class="nav child_menu" style="display: none">
@@ -19,7 +19,6 @@
                     </li>
                 </ul>
             </li>
-            <li><a><i class="fa fa-bar-chart-o"></i> Grafik </span></a>
             </li>
         </ul>
     </div>

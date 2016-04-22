@@ -1,13 +1,13 @@
 <div class="page-title">
     <div class="title_left">
         <h3>
-	        Periode <small>master</small>
+	        Pembayaran <small>master</small>
 	    </h3>
     </div>
 
 </div>
 <div class="clearfix"></div>
-<div id="modal_periode"></div>
+
 <div class="row">
     <div class="col-md-12 col-sm-12 col-xs-12">
         <div class="x_panel">
@@ -15,22 +15,18 @@
                 <h2>Data</h2>
                     <ul class="nav navbar-right panel_toolbox">
                         <li>
-                        <button class="btn btn-success" onclick="periode_add()">Tambah Periode</button>
                         </li>
                     </ul>
                 <div class="clearfix"></div>
             </div>
             <div class="table-container">
-                <table id="periode_datatable" class="table table-striped table-bordered">
+                <table id="pembayaran_datatable" class="table table-striped table-bordered">
                     <thead>
                         <tr class="headings">
-                            <th>No</th>
-                            <th>Periode</th>
-                            <th>BRANGKAT</th>
-                            <th>PULANG</th>
-                            <th>KUOTA</th>
-                            <!-- <th>SISA</th> -->
-                            <th>Action</span>
+                            <th width="5%">No</th>
+                            <th>Nama </th>
+                            <th>Progres Pembayaran</th>
+                            <th width="5%"></span>
                             </th>
                         </tr>
                     </thead>
@@ -45,27 +41,13 @@
 </div>
 
 <script type="text/javascript">
-	function periode_add() {
-        $('#modal_periode').load('<?php echo site_url('periode/add') ?>');
-    }
-
-    function edit(id) {
-        $('#modal_periode').load('<?php echo site_url() ?>/periode/edit/'+id);
+    function bayar(id) {
+         window.location.href = '<?php echo site_url() ?>/t_pembayaran/add_pembayaran/'+id;
 	}
-
-	function lihat(id) {
-        $('#modal_periode').load('<?php echo site_url() ?>/periode/lihat/'+id);
-	}
-
-	function hapus(id) {
-		$.post('<?php echo site_url() ?>/periode/delete/'+id, {a:a}, function(data, textStatus, xhr) {
-            datatable.getDataTable().ajax.reload();
-        });
-    }
 
     var datatable = new Datatable();
     datatable.init({
-        src: $("#periode_datatable"),
+        src: $("#pembayaran_datatable"),
         onSuccess: function (grid, response) {
             // grid:        grid object
             // response:    json object of server side ajax response
@@ -91,15 +73,12 @@
             
             
             "ajax": {
-                "url": "<?php echo site_url('periode/get') ?>", // ajax source
+                "url": "<?php echo site_url('t_pembayaran/get') ?>", // ajax source
             },
             "columns": [
                 {"orderable": false},
                 {"orderable": true},
-                {"orderable": true},
-                {"orderable": true},
-                {"orderable": true},
-                // {"orderable": true},
+                {"orderable": false},
                 {"orderable": false},
             ],
             "order": [
@@ -107,4 +86,5 @@
             ]// set first column as a default sort by asc
         }
     });
-</script>
+    </script>
+

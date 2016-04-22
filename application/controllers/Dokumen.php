@@ -78,9 +78,9 @@ class Dokumen extends CI_Controller {
 		$this->load->view('v_dokumen_modal', $data);
 	}
 
-	public function edit($id, $readonly='')
+	public function edit($id, $readonly='', $title='Edit Dokumen')
 	{
-		$data['title']       = 'Tambah Dokumen';
+		$data['title']       = $title;
 		$data['akses_field'] = $readonly;
 		$data['dokumen']     = $this->m_dokumen->get_by($id);
 		$this->load->view('v_dokumen_modal', $data);
@@ -88,7 +88,7 @@ class Dokumen extends CI_Controller {
 
 	public function lihat($id)
 	{
-		$this->edit($id,'readonly', '');
+		$this->edit($id,'readonly', 'Detail Dokumen');
 	}
 
 	public function save()

@@ -10,7 +10,7 @@
       </div>
       <div class="modal-body">
         <form id="form_dokumen">
-                <input id="middle-name" class="form-control col-md-7 col-xs-12" type="text" name="id_data_dokumen" <?php echo $akses_field ?> value="<?php echo @$r->ID_DATA_DOKUMEN ?>">
+                <input id="middle-name" class="form-control col-md-7 col-xs-12" type="hidden" name="id_data_dokumen" <?php echo $akses_field ?> value="<?php echo @$r->ID_DATA_DOKUMEN ?>">
             <div class="form-group">
                 <label for="middle-name" class="control-label col-md-3 col-sm-3 col-xs-12">Nama</label>
                 <input id="middle-name" class="form-control col-md-7 col-xs-12" type="text" name="data_dokumen" <?php echo $akses_field ?> value="<?php echo @$r->DATA_DOKUMEN ?>">

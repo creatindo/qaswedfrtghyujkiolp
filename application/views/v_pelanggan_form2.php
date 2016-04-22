@@ -138,13 +138,37 @@
         <div id="step-2">
             <?php $data['id_pelanggan'] = $r->ID_DATA_PEL ?>
             <?php $this->load->view('v_tab_periode', $data, FALSE); ?>
-
         </div>
         <div id="step-3">
+        <div class="clearfix"></div>
+            <form id="form_pembayaran"  class="form-horizontal form-label-left">
+                <div class="form-group">
+                    <input type="hidden" class="form-control" name="id" value="<?php echo $r->ID_DATA_PEL ?>">
+                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Jumlah Cicilan 
+                    </label>
+                    <div class="col-md-6 col-sm-6 col-xs-12">
+                          <input type="number" class="form-control" name="jumlah_cicilan" >
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Total Pembayaran 
+                    </label>
+                    <div class="col-md-6 col-sm-6 col-xs-12">
+                          <input type="number" class="form-control" name="total_bayar" >
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
+                        <button type="reset" value="reset" class="btn btn-primary">Reset</button>
+                        <button type="button" onclick="save_pembayaran()" class="btn btn-success">Simpan</button>
+                    </div>
+                </div>
+            </form>
         </div>
         <div id="step-4">
-          
-      </div>
+            <?php $data['id_pelanggan'] = $r->ID_DATA_PEL ?>
+            <?php $this->load->view('v_tab_dokumen', $data, FALSE); ?>
+        </div>
       <!-- End SmartWizard Content -->
 
     </div>
@@ -165,7 +189,14 @@
             if (data.pelanggan.status == true) {
             }
         });
-
+    }
+    
+    function save_pembayaran(form_object) {
+        var data2 = $('#form_pembayaran').serialize();
+        $.post('<?php echo site_url('t_pembayaran/save_pembayaran') ?>', data2, function(data, textStatus, xhr) {
+            // if (data.pelanggan.status == true) {
+            // }
+        });
     }
 
 // ===============================================================================================================
@@ -174,6 +205,7 @@
         $('#wizard').smartWizard();
 
         function onFinishCallback() {
+        window.location.href = '<?php echo site_url() ?>/pelanggan';
             $('#wizard').smartWizard('showMessage', 'Finish Clicked');
         }
 
@@ -188,6 +220,16 @@
             placeholder: "Pilih Kota",
         });
     });
+
+    $('.simpan').click(function(event) {
+        window.location.href = '<?php echo site_url() ?>/pelanggan';
+      /* Act on the event */
+    });
+    function simpan() {
+        window.location.href = '<?php echo site_url() ?>/pelanggan';
+      // body...
+      
+    }
 
 </script>
 <!--   <script type="text/javascript">
