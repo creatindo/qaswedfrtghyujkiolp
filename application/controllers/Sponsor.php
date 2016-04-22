@@ -17,7 +17,7 @@ class Sponsor extends CI_Controller {
 		$this->load->view('v_main', $data_content, FALSE);
 	}	
 
-	public function get()
+	public function get_datatable()
 	{
 		$customActionName=$this->input->post('customActionName');
 		if ($customActionName == "delete") {
@@ -36,31 +36,35 @@ class Sponsor extends CI_Controller {
 		$end = $iDisplayStart + $iDisplayLength;
 		$end = $end > $iTotalRecords ? $iTotalRecords : $end;
 
-		$get = $this->m_sponsor->get($iDisplayStart, $iDisplayLength);
-
+		$get = $this->m_sponsor->get_datatable($iDisplayStart, $iDisplayLength);
+		
 		$i=$iDisplayStart+1;
 
-		foreach ($get->result_array() as $d) {
-		    $id = $d['ID_SPONSOR'];
-		    $lihat='<a class="btn btn-primary btn-sm" href="javascript:lihat('.$id.');">
-				<i class="fa fa-search-plus"></i>
-				Detail
-				</a>';
-			$edit='<a class="btn btn-info btn-sm" href="javascript:edit('.$id.');">
-				<i class="fa fa-edit"></i>
-				Edit
-				</a>';
-			$hapus='<a class="btn btn-danger btn-sm" href="javascript:hapus('.$id.');">
-				<i class="fa fa-trash"></i>
-				Hapus
-				</a>';
-			
-			$records["data"][] = array(
-				$i++,
-				$d['NAMA'],
-				$d['ALAMAT'],
-				$lihat.$edit.$hapus
-			);
+		if ($get) {
+			foreach ($get as $d) {
+			    $id = $d->ID_SPONSOR;
+			    $lihat='<a class="btn btn-primary btn-sm" href="javascript:lihat('.$id.');">
+					<i class="fa fa-search-plus"></i>
+					Detail
+					</a>';
+				$edit='<a class="btn btn-info btn-sm" href="javascript:edit('.$id.');">
+					<i class="fa fa-edit"></i>
+					Edit
+					</a>';
+				$hapus='<a class="btn btn-danger btn-sm" href="javascript:hapus('.$id.');">
+					<i class="fa fa-trash"></i>
+					Hapus
+					</a>';
+				
+				$records["data"][] = array(
+					$i++,
+					$d->NAMA,
+					$d->ALAMAT,
+					$lihat.$edit.$hapus
+				);
+			}
+		}else{
+			// $records["data"][] = array();
 		}
 
 		$records["draw"]            = $sEcho;

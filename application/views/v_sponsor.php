@@ -88,7 +88,7 @@
             
             
             "ajax": {
-                "url": "<?php echo site_url('sponsor/get') ?>", // ajax source
+                "url": "<?php echo site_url('sponsor/get_datatable') ?>", // ajax source
             },
             "columns": [
                 {"orderable": false},

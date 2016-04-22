@@ -1,12 +1,18 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class M_sponsor extends CI_Model {
+class M_sponsor extends MY_Model {
 
-	public $_table = 'sponsor';
-	public $primary_key = 'ID_SPONSOR';
+	public function __construct()
+	{
+		parent::__construct();
+		$this->table = 'sponsor';
+		$this->primary_key = 'ID_SPONSOR';
+		$this->soft_deletes=TRUE;
+	}
 
-	function get($start, $pagecount = 10, $count_all=false) {
+
+	function get_datatable($start, $pagecount = 10, $count_all=false) {
         $i=0;
         $dataorder    = array();
         $dataorder[$i++] = "ID_SPONSOR";
@@ -24,24 +30,25 @@ class M_sponsor extends CI_Model {
             $this->db->order_by( $dataorder[$order[0]["column"]],  $order[0]["dir"]);
         }
 
-        $this->db->where('STATUS', 1);
+        $this->where('STATUS', 1);
         if ($count_all) {
-            return $this->db->count_all_results($this->_table);
+            return $this->count_rows();
         }else{
-            $result = $this->db->get($this->_table,$pagecount,$start);
+        	$this->limit($pagecount,$start);
+            $result = $this->get_all();
             return $result;
         }
     }
 
     function count_all(){
-        return $this->get(null,null,true);
+        return $this->get_datatable(null,null,true);
     }
 
 	public function get_by($id)
 	{
-		$this->db->where('ID_SPONSOR', $id);
-		$this->db->where('STATUS', 1);
-		return $this->db->get($this->_table);
+		$this->where('ID_SPONSOR', $id);
+		$this->where('STATUS', 1);
+		return $this->get(1);
 	}
 
 	public function save()
@@ -54,14 +61,14 @@ class M_sponsor extends CI_Model {
 		
 		$id = $this->input->post('id_sponsor');
 		if (empty($id)) {
-			$this->db->insert($this->_table, $data);
+			$this->insert($data);
 			$id = $this->db->insert_id();
 
 			$result = array('id' => $id, 'status' => 'inserted');
 
 		} else {
 			$this->db->where('ID_SPONSOR', $id);
-			$this->db->update($this->_table, $data);
+			$this->db->update($this->table, $data);
 
 			$result = array('id' => $id, 'status' => 'updated');
 
@@ -69,14 +76,14 @@ class M_sponsor extends CI_Model {
 		return $result;
 	}
 
-	public function delete($id)
-	{
-		$this->db->set('STATUS', 0);
-		$this->db->where('ID_SPONSOR', $id);
-		$this->db->update($this->_table);
+	// public function delete($id)
+	// {
+	// 	$this->db->set('STATUS', 0);
+	// 	$this->db->where('ID_SPONSOR', $id);
+	// 	$this->db->update($this->table);
 		
-		return array('id' => $id, 'deleted' => true );
-	}
+	// 	return array('id' => $id, 'deleted' => true );
+	// }
 
 }
 
