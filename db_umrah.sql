@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50626
 File Encoding         : 65001
 
-Date: 2016-04-12 09:06:39
+Date: 2016-04-26 12:01:33
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -60,34 +60,14 @@ CREATE TABLE `data_pelanggan` (
   `KETERANGAN` varchar(50) DEFAULT NULL,
   `STATUS` int(11) DEFAULT NULL,
   PRIMARY KEY (`ID_DATA_PEL`)
-) ENGINE=InnoDB AUTO_INCREMENT=154 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=156 DEFAULT CHARSET=latin1;
 
 -- ----------------------------
 -- Records of data_pelanggan
 -- ----------------------------
-INSERT INTO `data_pelanggan` VALUES ('7', 'bulyan', 'sumenep', 'abdullah', 'sumenep', '1993-01-11', 'l', 'prohammer', '12345678', null, null, null, null, null, '1');
-INSERT INTO `data_pelanggan` VALUES ('8', 'ali', 'dasdasd', '', '', '1970-01-01', null, '', '', null, null, null, null, null, '1');
-INSERT INTO `data_pelanggan` VALUES ('133', null, null, null, null, null, null, null, null, null, null, null, null, null, '0');
-INSERT INTO `data_pelanggan` VALUES ('134', 'sdfghjkl;\'', '', '', '', '1970-01-01', null, '', '', null, null, null, null, null, '1');
-INSERT INTO `data_pelanggan` VALUES ('135', 'sdfghjkl;\'', '', '', '', '1970-01-01', null, '', '', null, null, null, null, null, '0');
-INSERT INTO `data_pelanggan` VALUES ('136', 'sdfghjkl;\'', '', '', '', '1970-01-01', null, '', '', null, null, null, null, null, '0');
-INSERT INTO `data_pelanggan` VALUES ('137', 'sdfghjkl;\'', '', '', '', '1970-01-01', null, '', '', null, null, null, null, null, '0');
-INSERT INTO `data_pelanggan` VALUES ('138', null, null, null, null, null, null, null, null, null, null, null, null, null, '0');
-INSERT INTO `data_pelanggan` VALUES ('139', 'asddasdasdas', 'asdasd', '', '', '1970-01-01', null, '', '', null, null, null, null, null, '1');
-INSERT INTO `data_pelanggan` VALUES ('140', 'asddasdasdas', 'asdasd', 'asdasdasd', '', '1970-01-01', null, '', '', null, null, null, null, null, '1');
-INSERT INTO `data_pelanggan` VALUES ('141', null, null, null, null, null, null, null, null, null, null, null, null, null, '0');
-INSERT INTO `data_pelanggan` VALUES ('142', 'dfghjk', 'sfdss', '', '', '1970-01-01', null, '', '', null, null, null, null, null, '1');
-INSERT INTO `data_pelanggan` VALUES ('143', 'aaa', null, null, null, null, null, null, null, null, null, null, null, null, '0');
-INSERT INTO `data_pelanggan` VALUES ('144', 'aaa', null, null, null, null, null, null, null, null, null, null, null, null, '0');
-INSERT INTO `data_pelanggan` VALUES ('145', 'aaa', null, null, null, null, null, null, null, null, null, null, null, null, '0');
-INSERT INTO `data_pelanggan` VALUES ('146', 'aaa', null, null, null, null, null, null, null, null, null, null, null, null, '0');
 INSERT INTO `data_pelanggan` VALUES ('147', 'aaa', '', '', '', '1970-01-01', null, '', '', null, null, null, null, null, '1');
-INSERT INTO `data_pelanggan` VALUES ('148', 'aaa', null, null, null, null, null, null, null, null, null, null, null, null, '0');
-INSERT INTO `data_pelanggan` VALUES ('149', 'aaa', null, null, null, null, null, null, null, null, null, null, null, null, '0');
-INSERT INTO `data_pelanggan` VALUES ('150', 'aaa', 'sdfsdfs', '', '', '1970-01-01', null, '', '', null, null, null, null, null, '1');
-INSERT INTO `data_pelanggan` VALUES ('151', 'aaa', 'sdfsdf', '', '', '1970-01-01', null, '', '', null, null, null, null, null, '1');
-INSERT INTO `data_pelanggan` VALUES ('152', 'aaa', null, null, null, null, null, null, null, null, null, null, null, null, '0');
-INSERT INTO `data_pelanggan` VALUES ('153', 'aaa', null, null, null, null, null, null, null, null, null, null, null, null, '0');
+INSERT INTO `data_pelanggan` VALUES ('154', 'aaa', null, null, null, null, null, null, null, null, null, null, null, null, '0');
+INSERT INTO `data_pelanggan` VALUES ('155', 'aaa', null, null, null, null, null, null, null, null, null, null, null, null, '0');
 
 -- ----------------------------
 -- Table structure for dokumen
@@ -151,21 +131,12 @@ CREATE TABLE `pelanggan` (
   KEY `ID_PERIODE` (`ID_PERIODE`),
   CONSTRAINT `FK_RELATIONSHIP_3` FOREIGN KEY (`ID_DATA_PEL`) REFERENCES `data_pelanggan` (`ID_DATA_PEL`),
   CONSTRAINT `FK_RELATIONSHIP_7` FOREIGN KEY (`ID_SPONSOR`) REFERENCES `sponsor` (`ID_SPONSOR`)
-) ENGINE=InnoDB AUTO_INCREMENT=123 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=120 DEFAULT CHARSET=latin1;
 
 -- ----------------------------
 -- Records of pelanggan
 -- ----------------------------
-INSERT INTO `pelanggan` VALUES ('3', '7', '1', '3', null, null);
-INSERT INTO `pelanggan` VALUES ('4', '8', '1', '3', null, null);
-INSERT INTO `pelanggan` VALUES ('110', '136', null, '3', null, null);
-INSERT INTO `pelanggan` VALUES ('111', '137', null, '5', null, null);
-INSERT INTO `pelanggan` VALUES ('112', '139', null, '4', null, null);
-INSERT INTO `pelanggan` VALUES ('113', '140', null, '5', null, null);
-INSERT INTO `pelanggan` VALUES ('114', '145', null, '4', null, null);
-INSERT INTO `pelanggan` VALUES ('115', '150', null, '6', null, null);
-INSERT INTO `pelanggan` VALUES ('119', '147', null, '5', '7', '4124141');
-INSERT INTO `pelanggan` VALUES ('122', '153', null, '6', null, null);
+INSERT INTO `pelanggan` VALUES ('119', '147', null, '5', '7', '40000');
 
 -- ----------------------------
 -- Table structure for pembayaran
@@ -182,32 +153,18 @@ CREATE TABLE `pembayaran` (
   `STATUS` int(11) DEFAULT NULL,
   PRIMARY KEY (`ID_PEMBAYARAN`),
   KEY `pembayaran_ibfk_1` (`ID_PELANGGAN`)
-) ENGINE=InnoDB AUTO_INCREMENT=33 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=latin1;
 
 -- ----------------------------
 -- Records of pembayaran
 -- ----------------------------
-INSERT INTO `pembayaran` VALUES ('12', '147', null, null, '2000', null, null, '1');
+INSERT INTO `pembayaran` VALUES ('12', '147', null, null, '1000', null, null, '1');
 INSERT INTO `pembayaran` VALUES ('13', '147', null, null, '3000', null, null, '1');
 INSERT INTO `pembayaran` VALUES ('14', '147', null, null, '4000', null, null, '1');
-INSERT INTO `pembayaran` VALUES ('15', '147', null, null, '5', null, null, '1');
-INSERT INTO `pembayaran` VALUES ('16', '147', null, null, '5', null, null, '1');
-INSERT INTO `pembayaran` VALUES ('17', '147', null, null, '5', null, null, '1');
-INSERT INTO `pembayaran` VALUES ('18', '147', null, null, '5', null, null, '1');
-INSERT INTO `pembayaran` VALUES ('19', '147', null, null, null, null, null, '0');
-INSERT INTO `pembayaran` VALUES ('20', '147', null, null, null, null, null, '0');
-INSERT INTO `pembayaran` VALUES ('21', '147', null, null, null, null, null, '0');
-INSERT INTO `pembayaran` VALUES ('22', '147', null, null, null, null, null, '0');
-INSERT INTO `pembayaran` VALUES ('23', '147', null, null, null, null, null, '0');
-INSERT INTO `pembayaran` VALUES ('24', '147', null, null, null, null, null, '0');
-INSERT INTO `pembayaran` VALUES ('25', '147', null, null, null, null, null, '0');
-INSERT INTO `pembayaran` VALUES ('26', '147', null, null, null, null, null, '0');
-INSERT INTO `pembayaran` VALUES ('27', '147', null, null, null, null, null, '0');
-INSERT INTO `pembayaran` VALUES ('28', '147', null, null, null, null, null, '0');
-INSERT INTO `pembayaran` VALUES ('29', '147', null, null, null, null, null, '0');
-INSERT INTO `pembayaran` VALUES ('30', '147', null, null, null, null, null, '0');
-INSERT INTO `pembayaran` VALUES ('31', '147', null, null, null, null, null, '0');
-INSERT INTO `pembayaran` VALUES ('32', '147', null, null, null, null, null, '0');
+INSERT INTO `pembayaran` VALUES ('15', '147', null, null, '2000', null, null, '1');
+INSERT INTO `pembayaran` VALUES ('16', '147', null, null, '3000', null, null, '0');
+INSERT INTO `pembayaran` VALUES ('17', '147', null, '2016-04-14', '8000', null, null, '1');
+INSERT INTO `pembayaran` VALUES ('18', '147', null, null, '1000', null, null, '1');
 
 -- ----------------------------
 -- Table structure for periode
