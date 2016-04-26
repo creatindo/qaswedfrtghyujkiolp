@@ -48,7 +48,6 @@ class M_pelanggan extends CI_Model {
 
 	public function add_temp()
 	{
-		$this->db->set('PEL_NAMA', 'aaa');
 		$this->db->set('STATUS', 0);
 		$this->db->insert($this->_table);
 		$id = $this->db->insert_id();
