@@ -57,7 +57,7 @@
           </li>
         </ul>
         <div id="step-1">
-            <form id="form_pelanggan"  class="form-horizontal form-label-left">
+            <form id="form_pelanggan"  class="form-horizontal form-label-left" style="overflow: hidden;">
                 <input type="hidden"  name="id_data_pel" value="<?php echo @$r->ID_DATA_PEL ?>">
                 <div class="form-group">
                     <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Nama <span class="required">*</span>
@@ -127,8 +127,6 @@
                   
                 <div class="form-group">
                     <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
-                        <button type="reset" value="reset" class="btn btn-primary">Reset</button>
-                        <button type="button" onclick="save()" class="btn btn-success">Simpan</button>
                     </div>
                 </div>
                 <?php endif ?>
@@ -141,7 +139,7 @@
         </div>
         <div id="step-3">
         <div class="clearfix"></div>
-            <form id="form_pembayaran"  class="form-horizontal form-label-left">
+            <form id="form_pembayaran"  class="form-horizontal form-label-left" style="overflow: hidden;">
                 <div class="form-group">
                     <input type="hidden" class="form-control" name="id" value="<?php echo $r->ID_DATA_PEL ?>">
                     <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Jumlah Cicilan 
