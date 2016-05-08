@@ -22,6 +22,8 @@ class T_pembayaran extends CI_Controller {
 	public function save_pembayaran()
 	{
 		$this->m_t_pembayaran->save_pembayaran();
+		$res["status"] = "updated";
+		$this->output->set_content_type('application/json')->set_output(json_encode($res)); 
 	}
 
 		public function get()
@@ -57,10 +59,21 @@ class T_pembayaran extends CI_Controller {
 					BAYAR
 					</a>';
 		    }
-		    $progres = '<div class="progress progress_sm">
-                            <div class="progress-bar bg-green" role="progressbar" data-transitiongoal="47"></div>
-                          </div>
-                          <small>'.$d['JUMLAH_CICILAN'].'/'.$d['TOTAL_CICILAN'].' :  Rp. '.number_format($d['JUMLAH_BAYAR']).' / Rp. '.number_format($d['TOTAL_BAYAR']).'</small>
+		    $persen_cicilan=$d['JUMLAH_CICILAN']/$d['TOTAL_CICILAN'];
+		    $persen_bayar=$d['JUMLAH_BAYAR']/$d['TOTAL_BAYAR'];
+		    $progres = '<div class="progress">
+						  <div class="progress-bar" role="progressbar" aria-valuenow="70"
+						  aria-valuemin="0" aria-valuemax="100" style="width:'.$persen_bayar.'%">
+						    <span class="sr-only">'.$persen_bayar.'% Complete</span>
+						  </div>
+						</div>
+						<div class="progress">
+						  <div class="progress-bar" role="progressbar" aria-valuenow="70"
+						  aria-valuemin="0" aria-valuemax="100" style="width:'.$persen_cicilan.'%">
+						    <span class="sr-only">'.$persen_cicilan.'% Complete</span>
+						  </div>
+						</div>
+                      	<small>'.$d['JUMLAH_CICILAN'].'/'.$d['TOTAL_CICILAN'].' :  Rp. '.number_format($d['JUMLAH_BAYAR']).' / Rp. '.number_format($d['TOTAL_BAYAR']).'</small>
 					    ';
 			
 			$records["data"][] = array(

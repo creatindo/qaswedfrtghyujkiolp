@@ -84,11 +84,34 @@ function SmartWizard(target, options) {
         this.contentWidth = $this.elmStepContainer.width();
 
         $($this.buttons.next).click(function() {
-            $this.goForward();
+            // function we want to run
+            var fnstring = "step_"+$this.curStepIdx;
+
+            // find object
+            var fn = window[fnstring];
+
+            // is object a function?
+            if (typeof fn === 'function') {
+                fn("next");
+            }else{
+                console.log("belum ada function step_"+fnstring+"()");
+            }
+
             return false;
         });
         $($this.buttons.previous).click(function() {
-            $this.goBackward();
+            // function we want to run
+            var fnstring = "step_"+$this.curStepIdx;
+
+            // find object
+            var fn = window[fnstring];
+
+            // is object a function?
+            if (typeof fn === 'function') {
+                fn("prev");
+            }else{
+                console.log("belum ada function step_"+fnstring+"()");
+            }
             return false;
         });
         $($this.buttons.finish).click(function() {

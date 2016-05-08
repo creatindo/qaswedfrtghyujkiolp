@@ -183,19 +183,33 @@
         window.location.href = '<?php echo site_url() ?>/pelanggan/edit/'+id;
     }
     
-    function save(form_object) {
+    function step_0(next_or_prev) { 
         var data = $('#form_pelanggan').serialize();
         $.post('<?php echo site_url('pelanggan/save') ?>', data, function(data, textStatus, xhr) {
-            if (data.pelanggan.status == true) {
+            if (data.pelanggan.status == "updated") {
+              if (next_or_prev == "next") {
+                $('#wizard').smartWizard('goForward');
+              }else{
+                $('#wizard').smartWizard('goBackward');
+              }
+            }else{
+              return false;
             }
         });
     }
     
-    function save_pembayaran(form_object) {
+    function step_1(next_or_prev) {
         var data2 = $('#form_pembayaran').serialize();
         $.post('<?php echo site_url('t_pembayaran/save_pembayaran') ?>', data2, function(data, textStatus, xhr) {
-            // if (data.pelanggan.status == true) {
-            // }
+            if (data.status == "updated") {
+              if (next_or_prev == "next") {
+                $('#wizard').smartWizard('goForward');
+              }else{
+                $('#wizard').smartWizard('goBackward');
+              }
+            }else{
+              return false;
+            }
         });
     }
 
@@ -232,45 +246,3 @@
     }
 
 </script>
-<!--   <script type="text/javascript">
-    $(document).ready(function() {
-      $.listen('parsley:field:validate', function() {
-        validateFront();
-      });
-      $('#demo-form .btn').on('click', function() {
-        $('#demo-form').parsley().validate();
-        validateFront();
-      });
-      var validateFront = function() {
-        if (true === $('#demo-form').parsley().isValid()) {
-          $('.bs-callout-info').removeClass('hidden');
-          $('.bs-callout-warning').addClass('hidden');
-        } else {
-          $('.bs-callout-info').addClass('hidden');
-          $('.bs-callout-warning').removeClass('hidden');
-        }
-      };
-    });
-
-    $(document).ready(function() {
-      $.listen('parsley:field:validate', function() {
-        validateFront();
-      });
-      $('#form_pelanggan .btn').on('click', function() {
-        $('#form_pelanggan').parsley().validate();
-        validateFront();
-      });
-      var validateFront = function() {
-        if (true === $('#form_pelanggan').parsley().isValid()) {
-          $('.bs-callout-info').removeClass('hidden');
-          $('.bs-callout-warning').addClass('hidden');
-        } else {
-          $('.bs-callout-info').addClass('hidden');
-          $('.bs-callout-warning').removeClass('hidden');
-        }
-      };
-    });
-    try {
-      hljs.initHighlightingOnLoad();
-    } catch (err) {}
-  </script> -->
