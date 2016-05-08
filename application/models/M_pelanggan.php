@@ -46,6 +46,12 @@ class M_pelanggan extends CI_Model {
 		return $this->db->get($this->_table);
 	}
 
+	public function get_pembayaran_by($id)
+	{
+		$this->db->where('ID_DATA_PEL', $id);
+		return $this->db->get('pelanggan');
+	}
+
 	public function add_temp()
 	{
 		$this->db->set('STATUS', 0);

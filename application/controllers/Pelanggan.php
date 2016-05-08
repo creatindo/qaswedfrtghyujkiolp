@@ -89,11 +89,12 @@ class Pelanggan extends CI_Controller {
 
 	public function edit($id, $readonly='')
 	{
-		// $data['mode'] = ($mode != '') ? $mode : 'edit' ;
-		$data['akses_field'] = $readonly;
-		$data['akses_select'] =  ($readonly) ?'disabled':'';
-		$data['periode'] = $this->m_t_periode->dropdown_active();
-		$data['pelanggan'] = $this->m_pelanggan->get_by($id);
+		// $data['mode']         = ($mode != '') ? $mode : 'edit' ;
+		$data['akses_field']     = $readonly;
+		$data['akses_select']    =  ($readonly) ?'disabled':'';
+		$data['periode']         = $this->m_t_periode->dropdown_active();
+		$data['pelanggan']       = $this->m_pelanggan->get_by($id);
+		$data['pembayaran']       = $this->m_pelanggan->get_pembayaran_by($id);
 		$data_content['content'] = $this->load->view('v_pelanggan_form2', $data, TRUE);
 		$data_content['sidebar'] = $this->load->view('v_sidebar', $data, TRUE);
 		$this->load->view('v_main', $data_content, FALSE);

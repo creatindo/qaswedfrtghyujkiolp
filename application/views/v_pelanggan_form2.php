@@ -1,4 +1,5 @@
 <?php if (isset($pelanggan)) $r = $pelanggan->row() ?>
+<?php if (isset($pembayaran)) $bayar = $pembayaran->row() ?>
 
 <div class="page-title">
     <div class="title_left">
@@ -122,15 +123,6 @@
                         <input type="text" id="first-name" name="pel_no_passport" <?php echo $akses_field ?> value="<?php echo @$r->PEL_NO_PASSPORT ?>" class="form-control col-md-7 col-xs-12">
                     </div>
                 </div>
-                <div class="ln_solid"></div>
-                <?php if ($akses_field != 'readonly'): ?>
-                  
-                <div class="form-group">
-                    <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
-                    </div>
-                </div>
-                <?php endif ?>
-
             </form>
         </div>
         <div id="step-2">
@@ -142,23 +134,17 @@
             <form id="form_pembayaran"  class="form-horizontal form-label-left" style="overflow: hidden;">
                 <div class="form-group">
                     <input type="hidden" class="form-control" name="id" value="<?php echo $r->ID_DATA_PEL ?>">
-                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Jumlah Cicilan 
+                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name" >Jumlah Cicilan 
                     </label>
                     <div class="col-md-6 col-sm-6 col-xs-12">
-                          <input type="number" class="form-control" name="jumlah_cicilan" >
+                          <input type="number" class="form-control" name="jumlah_cicilan" value="<?php echo $bayar->JUMLAH_CICILAN ?>">
                     </div>
                 </div>
                 <div class="form-group">
-                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">Total Pembayaran 
+                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name" >Total Pembayaran 
                     </label>
                     <div class="col-md-6 col-sm-6 col-xs-12">
-                          <input type="number" class="form-control" name="total_bayar" >
-                    </div>
-                </div>
-                <div class="form-group">
-                    <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
-                        <button type="reset" value="reset" class="btn btn-primary">Reset</button>
-                        <button type="button" onclick="save_pembayaran()" class="btn btn-success">Simpan</button>
+                          <input type="number" class="form-control" name="total_bayar" value="<?php echo $bayar->TOTAL_BAYAR ?>">
                     </div>
                 </div>
             </form>
@@ -210,6 +196,22 @@
             }
         });
     }
+
+    function step_2(next_or_prev) {
+        var data2 = $('#form_pembayaran').serialize();
+        $.post('<?php echo site_url('t_pembayaran/save_pembayaran') ?>', data2, function(data, textStatus, xhr) {
+            if (data.status == "updated") {
+              if (next_or_prev == "next") {
+                $('#wizard').smartWizard('goForward');
+              }else{
+                $('#wizard').smartWizard('goBackward');
+              }
+            }else{
+              return false;
+            }
+        });
+    }
+
 
 // ===============================================================================================================
     $(document).ready(function() {
